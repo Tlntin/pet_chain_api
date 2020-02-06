@@ -34,7 +34,7 @@ class PetChain(object):
         return headers
         # pprint(self.headers)  # 打印请求头
 
-    def get_post1(self, url):
+    def get_post(self, url):
         """
         :param url:请求的链接
         获取常规数据的post请求
@@ -52,7 +52,7 @@ class PetChain(object):
         :return: 数据刷新时间，公告内容（list类型）
         """
         url = 'https://pet-chain.duxiaoman.com/data/notice/getVigorNotice'
-        data = self.get_post1(url)  # 请求数据
+        data = self.get_post(url)  # 请求数据
         response_type = data['errorMsg']  # 获取返回状态
         if response_type == 'success':  # 如果返回成功
             response_time = data['timestamp']  # 获取更新时间
@@ -70,7 +70,7 @@ class PetChain(object):
         :return:
         """
         url = 'https://pet-chain.duxiaoman.com/data/user/getVigorInfoByUser'
-        data = self.get_post1(url)  # 请求数据
+        data = self.get_post(url)  # 请求数据
         print(data)
         response_type = data['errorMsg']  # 返回状态
         if response_type == 'success':  # 如果返回状态为成功
@@ -88,7 +88,7 @@ class PetChain(object):
         :return:
         """
         url = 'https://pet-chain.duxiaoman.com/data/vigor/taskInfo'
-        data = self.get_post1(url)  # 获取请求数据
+        data = self.get_post(url)  # 获取请求数据
         response_type = data['errorMsg']  # 返回状态
         if response_type == 'success':  # 如果返回状态为成功
             response_time = data['timestamp']
@@ -208,17 +208,19 @@ class PetChain(object):
         用于微积分的一键收取
         """
         url = 'https://pet-chain.duxiaoman.com/data/vigor/getall'
-        data = self.get_post1(url)
+        data = self.get_post(url)
         print(data)
         response_type = data['errorMsg']
         if response_type == '微积分聚集中,请耐心等待微积分生成':
-            return '收取失败，请耐心等待'
+            result = '收取失败，请耐心等待'
+            print(result)
         else:
-            amount_list = data['data']['amount']
+            amount_list = data['data']['amounts']
             amount_sum = 0
             for amount in amount_list:
                 amount_sum += float(amount)  # 累计求和
-            return '收取成功，本次共收取微积分：{}'.format(amount_sum)
+            result = '收取成功，本次共收取微积分：{}'.format(amount_sum)
+            print(result)
 
     def get_purchase(self, pet_id2, pet_valid_code: str = None):
         """
@@ -267,5 +269,5 @@ if __name__ == '__main__':
     # pc.get_vigor_info()
     # pc.get_task_info()
     # pet.query_pets_on_sale()
-    # pet.one_key_collection()
-    pet.query_pet_by_id()
+    pet.one_key_collection()
+    # pet.query_pet_by_id()
