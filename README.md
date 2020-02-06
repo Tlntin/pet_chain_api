@@ -29,4 +29,8 @@
 [点我跳转](https://github.com/Tlntin/pet_chain_api)
 
 ##　示意图片
-![baiducookie.png](https://upload-images.jianshu.io/upload_images/17957829-ff004d4e0a5c74d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/17957829-ff004d4e0a5c74d5.png?imageMogr2/auto-orient/strip|imageView2/2/w/1088/format/webp)
+
+
+
+邀请码：```QQFWCBC```
